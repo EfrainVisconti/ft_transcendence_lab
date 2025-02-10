@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  users:
+    build: ./users
+    container_name: users_service
+    volumes:
+      - ./users/data:/app/data
+    ports:
+      - "5001:5000"
+    environment:
+      - DATABASE_URL=sqlite:///app/data/users.db
+
+  matches:
+    build: ./matches
+    container_name: matches_service
+    volumes:
+      - ./matches/data:/app/data
+    ports:
+      - "5002:5000"
+    environment:
+      - DATABASE_URL=sqlite:///app/data/matches.db
+
+  tournaments:
+    build: ./tournaments
+    container_name: tournaments_service
+    volumes:
+      - ./tournaments/data:/app/data
+    ports:
+      - "5003:5000"
+    environment:
+      - DATABASE_URL=sqlite:///app/data/tournaments.db
+
+  chats:
+    build: ./chats
+    container_name: chats_service
+    volumes:
+      - ./chats/data:/app/data
+    ports:
+      - "5004:5000"
+    environment:
+      - DATABASE_URL=sqlite:///app/data/chats.db
+
+  stats:
+    build: ./stats
+    container_name: stats_service
+    volumes:
+      - ./stats/data:/app/data
+    ports:
+      - "5005:5000"
+    environment:
+      - DATABASE_URL=sqlite:///app/data/stats.db
