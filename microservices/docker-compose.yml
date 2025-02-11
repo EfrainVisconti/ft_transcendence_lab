@@ -8,7 +8,7 @@ services:
       - "5001:5000"
     environment:
       - DATABASE_URL=sqlite:///app/data/users.db
-    restart: unless-stopped
+#    restart: unless-stopped
 
   matches:
     build: ./matches
@@ -19,7 +19,7 @@ services:
       - "5002:5000"
     environment:
       - DATABASE_URL=sqlite:///app/data/matches.db
-    restart: unless-stopped
+#    restart: unless-stopped
 
   tournaments:
     build: ./tournaments
@@ -30,7 +30,7 @@ services:
       - "5003:5000"
     environment:
       - DATABASE_URL=sqlite:///app/data/tournaments.db
-    restart: unless-stopped
+#    restart: unless-stopped
 
   chats:
     build: ./chats
@@ -41,7 +41,7 @@ services:
       - "5004:5000"
     environment:
       - DATABASE_URL=sqlite:///app/data/chats.db
-    restart: unless-stopped
+#    restart: unless-stopped
 
   stats:
     build: ./stats
@@ -52,4 +52,4 @@ services:
       - "5005:5000"
     environment:
       - DATABASE_URL=sqlite:///app/data/stats.db
-    restart: unless-stopped
+#    restart: unless-stopped
