@@ -10,7 +10,7 @@ RUN npm install --omit=optional
 
 COPY . .
 
-RUN mkdir -p /data
+RUN mkdir -p /app/data
 
 # Exponemos el puerto que usa Fastify
 EXPOSE 5000
