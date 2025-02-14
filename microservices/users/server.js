@@ -25,12 +25,12 @@ const db = new Database(dbFilePath, { verbose: console.log });
 
 
 app.post("/register", async (req, res) => {
-  const { username, password } = req.body;
-  if (!username || !password) return res.status(400).json({ error: "Faltan datos" });
+  const { username, email, password } = req.body;
+  if (!username || !email || !password) return res.status(400).json({ error: "Faltan datos" });
 
   const hashedPassword = await bcrypt.hash(password, 10);
   try {
-    db.prepare("INSERT INTO users (username, password) VALUES (?, ?)").run(username, hashedPassword);
+    db.prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)").run(username, email, hashedPassword);
     res.json({ message: "Usuario registrado" });
   } catch {
     res.status(400).json({ error: "Usuario ya existe" });

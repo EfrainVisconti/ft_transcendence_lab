@@ -1,8 +1,8 @@
-FROM node:20-bullseye
+FROM node:20-alpine
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y sqlite3
+RUN apk update && apk add --no-cache sqlite
 
 # COPY package.json package-lock.json ./
 
