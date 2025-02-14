@@ -4,9 +4,9 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y sqlite3
 
-COPY package.json package-lock.json ./
+# COPY package.json package-lock.json ./
 
-RUN npm install --omit=optional
+# RUN npm install --omit=optional
 
 COPY . .
 
@@ -16,4 +16,4 @@ RUN mkdir -p /app/data
 EXPOSE 5000
 
 # Comando para iniciar el servidor
-CMD ["node", "server.js"]
+CMD ["sh", "node_start.sh"]

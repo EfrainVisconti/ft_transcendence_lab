@@ -1,15 +1,15 @@
 all: build up
 
 build:
-	sudo docker compose -f docker-compose.yml build
+	docker-compose -f docker-compose.yml build
 
 # Levanta todos los servicios en segundo plano.
 up:
-	sudo docker compose -f docker-compose.yml up -d
+	docker-compose -f docker-compose.yml up -d
 
 # Detiene y elimina todos los servicios.
 down:
-	sudo docker compose -f docker-compose.yml down
+	docker-compose -f docker-compose.yml down
 
 re: down all
 
