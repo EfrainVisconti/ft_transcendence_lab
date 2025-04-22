@@ -1,0 +1,17 @@
+services:
+  notifications:
+    build: ./notifications-service
+    ports:
+      - "3001:3001"
+      - "3002:3002"
+    volumes:
+      - ./notifications-service/data:/app/data
+    environment:
+      - NODE_ENV=development
+
+  client:
+    build: ./notifications-client
+    ports:
+      - "5173:80"
+    depends_on:
+      - notifications
