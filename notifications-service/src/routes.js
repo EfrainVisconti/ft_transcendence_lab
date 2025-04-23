@@ -36,26 +36,6 @@ export default async function routes(fastify) {
     })));
   });
 
-  // Busca notificaciones por tipo y destinatario en la base de datos
-  fastify.get('/notifications/type/:type/:recipient_id', async (request) => {
-
-    const { type, recipient_id } = request.params;
-
-    const rows = db.prepare(
-      `SELECT * FROM notifications WHERE recipient_id = ? AND type = ? ORDER BY created_at DESC`
-    ).all(recipient_id, type);
-
-    // Convierte content de string a objeto
-    // Convierte read a booleano
-    // Devuelve array de notificaciones procesadas
-    return rows.map(row => ({
-      ...row,
-      content: JSON.parse(row.content),
-      read: !!row.read
-    }));
-
-  });
-
   // Recibe una nueva notificación con type, content (objeto) y recipient_id
   fastify.post('/notifications', async (request, reply) => {
 
