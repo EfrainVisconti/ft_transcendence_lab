@@ -5,7 +5,7 @@
   "description": "Notifications microservice management",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "nodemon src/index.js",
     "dev": "nodemon src/index.js"
   },
   "author": "",

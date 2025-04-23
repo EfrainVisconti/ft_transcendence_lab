@@ -8,7 +8,7 @@ import routes from './routes.js';
 const fastify = Fastify({ logger: true });
 
 // Activa CORS para permitir peticiones desde cualquier origen
-await fastify.register(cors, { origin: true });
+await fastify.register(cors, { origin: true, methods: ['GET', 'PATCH'] });
 
 // Crea un servidor HTTP independiente del de Fastify
 const httpServer = createServer();

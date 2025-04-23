@@ -18,7 +18,7 @@ const buildCountsByType = (notifications) => {
 export default async function routes(fastify) {
 
   // Busca todas las notificaciones de ese usuario en la base de datos
-  fastify.get('/notifications/:recipient_id', async (request) => {
+  fastify.get('/notifications/:recipient_id', async (request, reply) => {
 
     const { recipient_id } = request.params;
 
@@ -29,11 +29,11 @@ export default async function routes(fastify) {
     // Convierte content de string a objeto
     // Convierte read a booleano
     // Devuelve array de notificaciones procesadas
-    return rows.map(row => ({
+    reply.code(200).send(rows.map(row => ({
       ...row,
       content: JSON.parse(row.content),
       read: !!row.read
-    }));
+    })));
   });
 
   // Busca notificaciones por tipo y destinatario en la base de datos
@@ -53,6 +53,7 @@ export default async function routes(fastify) {
       content: JSON.parse(row.content),
       read: !!row.read
     }));
+
   });
 
   // Recibe una nueva notificación con type, content (objeto) y recipient_id
@@ -60,6 +61,7 @@ export default async function routes(fastify) {
 
     const { type, content, recipient_id } = request.body;
 
+    console.log(request.body);
     // Inserta la nueva notificación en la base de datos
     // read se guarda como 0 (no leído).
     // content se guarda como string (lo serializa con JSON.stringify).
@@ -75,10 +77,10 @@ export default async function routes(fastify) {
     ).all(recipient_id);
     
     // Calcula cuántas no leídas hay por tipo usando buildCountsByType
-    const counts = buildCountsByType(allNotifs);
+   //const counts = buildCountsByType(allNotifs);
 
     // Envía un evento por WebSocket al usuario correspondiente con el conteo actualizado
-    request.io.to(`user_${recipient_id}`).emit('notification_counts', counts);
+    request.io.to(`user_${recipient_id}`).emit('new_notifications', type);
 
     // Envía la respuesta con el ID de la nueva notificación
     reply.code(201).send({ id: result.lastInsertRowid });
