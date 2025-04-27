@@ -41,8 +41,8 @@ fastify.register(userRoutes);
 
 const start = async () => {
   try {
-    await fastify.listen({ port: 3002 });
-    console.log("Users-service escuchando en http://localhost:3002");
+    await fastify.listen({ port: 3003 });
+    console.log("Users-service escuchando en http://localhost:3003");
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
