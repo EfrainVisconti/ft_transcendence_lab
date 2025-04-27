@@ -1,0 +1,23 @@
+{
+  "name": "users-service",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Users microservice management",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cors": "^11.0.1",
+    "better-sqlite3": "^11.9.1",
+    "fastify": "^5.3.0",
+    "fastify-multipart": "^5.4.0",
+    "fastify-static": "^4.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
