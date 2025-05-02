@@ -1,4 +1,5 @@
 - Enviar cambios del perfil al login
+- Conectar Chat_BackEnd con Notification_BackEnd
 - User stats > matches service
 - Matches stats > matches service
 - Time-ago notifications > frontend
